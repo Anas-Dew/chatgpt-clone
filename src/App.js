@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <>
-      <Navbar heading="GPT"/>
+      <Navbar heading="Neural Mind AI"/>
       {/* <Sidebar/> */}
       <Chat/>
     </>
