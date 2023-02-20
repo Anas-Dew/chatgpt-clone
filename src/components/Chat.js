@@ -1,4 +1,5 @@
 import React from 'react'
+import Sidebar from './Sidebar'
 const Chat = () => {
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
@@ -19,9 +20,10 @@ const Chat = () => {
 
     }
     return (
-        <>
-            <div id='chat-box' style={{marginBottom: "5rem"}} className='mt-5 p-3 d-flex flex-column'>
-                <div style={{width: "50%"}} className='p-2 m-4 bg-primary text-white rounded'>Hi, I am Neural Mind AI. You can ask me anything.</div>
+        <div>
+            <Sidebar/>
+            <div id='chat-box' style={{ marginBottom: "5rem" }} className='mt-5 p-3 d-flex flex-column'>
+                <div style={{ width: "50%" }} className='p-2 m-4 bg-primary text-white rounded'>Hi, I am Neural Mind AI. You can ask me anything.</div>
             </div>
 
 
@@ -41,7 +43,7 @@ const Chat = () => {
                     <button onClick={AddToChat} id='send' type="submit" className="m-1 rounded-pill btn btn-primary">Send</button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

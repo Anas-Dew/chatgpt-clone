@@ -22,19 +22,6 @@ const Sidebar = () => {
                     </div>
                 </div>
             </nav>
-
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#sidebarMenu"
-                aria-controls="sidebarMenu"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                {/* <i class="fas fa-bars"></i> */}
-                Click Me
-            </button>
         </>
 
     )
