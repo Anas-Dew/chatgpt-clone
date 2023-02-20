@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
     const ShowBar = () => {
@@ -12,7 +13,7 @@ const Navbar = (props) => {
     return (
         <nav className="flex-row-reverse navbar bg-light fixed-top">
             <div className="container-fluid">
-                <span className="navbar-brand mb-0 h1">{props.heading}</span>
+                <Link to={"/"} className="navbar-brand mb-0 h1">{props.heading}</Link>
             </div>
             <button id='nav-button' onClick={ShowBar} className='d-flex position-absolute mx-2 navbar-toggler'
                 type="button"

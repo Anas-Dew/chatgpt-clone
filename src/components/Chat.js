@@ -31,7 +31,7 @@ const Chat = () => {
             {/* THESE ARE CHAT BUTTONS */}
             <div>
                 <div className="d-flex p-3 fixed-bottom bg-white">
-                    <button onClick={ClearChat} type="submit" className="m-1 rounded-pill btn btn-primary"><i class="fa-solid fa-broom-wide"></i></button>
+                    <button onClick={ClearChat} type="submit" className="m-1 rounded-pill btn btn-primary">Clean</button>
                     <input onKeyDown={e => {
                         if (e.keyCode === 13 && e.ctrlKey) {
 
