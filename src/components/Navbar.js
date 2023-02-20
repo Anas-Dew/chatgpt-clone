@@ -18,7 +18,7 @@ const Navbar = (props) => {
             <button id='nav-button' onClick={ShowBar} className='d-flex position-absolute mx-2 navbar-toggler'
                 type="button"
             >
-                <i class="fas fa-bars"></i>
+                <i className="fas fa-bars"></i>
             </button>
         </nav>
     )

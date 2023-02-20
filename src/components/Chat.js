@@ -11,6 +11,7 @@ const Chat = () => {
             chatBox.lastChild.textContent = currentText
             document.getElementById('chat-input').value = ""
             chatBox.scrollTop = chatBox.scrollHeight;
+            getChat("https://api.openai.com/v1/completions", currentText)
         }
     }
     const ClearChat = () => {
@@ -19,9 +20,42 @@ const Chat = () => {
         chatBox.innerHTML = "<div style='width:50%' class='p-2 m-4 bg-primary text-white rounded'>Hi, I am Neural Mind AI. You can ask me anything.</div>"
 
     }
+
+    const SendChat = (text) => {
+        let chatBox = document.getElementById('chat-box');
+        chatBox.innerHTML += `<div style='width:50%' class='p-2 m-4 bg-primary text-white rounded'></div>`
+        chatBox.lastChild.textContent = text
+    }
+
+    const getChat = async (url = 'https://api.openai.com/v1/completions', prompt) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.REACT_APP_OPEN_KEY}`
+            },
+            body: JSON.stringify({
+                "model": "text-davinci-003",
+                "prompt": `${prompt}`,
+                "temperature": 0.7,
+                "max_tokens": 256,
+                "top_p": 1,
+                "frequency_penalty": 0,
+                "presence_penalty": 0
+            })
+        }).then(response => response.json()).then(
+            data => {
+                let response = data['choices'][0]['text'];
+                console.log(response);
+                SendChat(response)
+            }
+        )
+    }
+
+    // getChat("https://api.openai.com/v1/completions", "")
     return (
         <div>
-            <Sidebar/>
+            <Sidebar />
             <div id='chat-box' style={{ marginBottom: "5rem" }} className='mt-5 p-3 d-flex flex-column'>
                 <div style={{ width: "50%" }} className='p-2 m-4 bg-primary text-white rounded'>Hi, I am Neural Mind AI. You can ask me anything.</div>
             </div>
