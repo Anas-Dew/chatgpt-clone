@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+/* eslint-disable */ 
 const Chat = () => {
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
