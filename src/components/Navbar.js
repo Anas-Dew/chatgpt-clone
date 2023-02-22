@@ -2,24 +2,22 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
-    const ShowBar = () => {
-        let bar = document.getElementById('sidebarMenu')
-        if (bar.style.display === 'block') {
-            bar.style.display = 'none';
-        } else {
-            bar.style.display = 'block'
-        }
-    }
+
     return (
-        <nav className="flex-row-reverse navbar bg-light fixed-top">
-            <div className="container-fluid">
-                <Link to={"/"} className="navbar-brand mb-0 h1">{props.heading}</Link>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <Link class="navbar-brand" href="#">{props.heading}</Link>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" rel='noreferrer noopener' target={'_blank'} href="http://anasdew.tech/">About Me</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <button id='nav-button' onClick={ShowBar} className='d-flex position-absolute mx-2 navbar-toggler'
-                type="button"
-            >
-                <i className="fas fa-bars"></i>
-            </button>
         </nav>
     )
 }
