@@ -55,7 +55,7 @@ const Chat = () => {
     return (
         <div>
             <div id='chat-box' style={{ marginBottom: "5rem" }} className=' p-3 d-flex flex-column'>
-                <div style={{ width: "70%"}} className='p-2 m-4 bg-primary text-white rounded'>Hi I am CloneGPT, made by Anas Dew. You can ask me anything you want.</div>
+                <div style={{ width: "70%"}} className='p-2 m-4 bg-primary text-white rounded'>Hi I am CloneGPT, made by Anas Dew in 4 hours and 18 minutes. You can ask me anything you want.</div>
             </div>
 
             {/* THESE ARE CHAT BUTTONS */}
