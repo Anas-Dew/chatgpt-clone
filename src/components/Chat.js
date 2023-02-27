@@ -1,8 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 /* eslint-disable */
 const Chat = () => {
     const audioSendRef = useRef(null);
     const audioGotRef = useRef(null);
+    const [AIChat, setAIChat] = useState('AI is writing...')
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
@@ -15,6 +16,10 @@ const Chat = () => {
             chatBox.lastChild.textContent = currentText
             document.getElementById('chat-input').value = ""
             chatBox.scrollTop = chatBox.scrollHeight;
+            setTimeout(() => {
+                SendChat()
+            }, 1000)
+            // setAIChat('...')
             getChat("https://api.openai.com/v1/completions", currentText)
         }
     }
@@ -25,10 +30,10 @@ const Chat = () => {
 
     }
 
-    const SendChat = (text) => {
+    const SendChat = () => {
         let chatBox = document.getElementById('chat-box');
         audioGotRef.current.play()
-        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'>${text}</div>`
+        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'>${AIChat}</div>`
         // chatBox.lastChild.textContent = text
     }
 
@@ -52,7 +57,7 @@ const Chat = () => {
             data => {
                 let response = data['choices'][0]['text'];
                 console.log(response);
-                SendChat(response)
+                document.getElementById('chat-box').lastChild.innerHTML = response
             }
         )
     }
@@ -78,7 +83,7 @@ const Chat = () => {
                         }
                     }}
                         type="text" className="m-1 rounded form-control" placeholder='Ask me anything' id="chat-input" />
-                    <button onClick={ClearChat} type="submit" className="m-1 rounded btn btn-primary">C</button>
+                    {/* <button onClick={ClearChat} type="submit" className="m-1 rounded btn btn-primary">Clear</button> */}
                     <button onClick={AddToChat} id='send' type="submit" className="m-1 rounded btn btn-primary">Send</button>
                 </div>
             </div>

@@ -13,6 +13,9 @@ const Navbar = (props) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
+                            <a className="nav-link text-light" rel='noreferrer noopener' href="/">New Chat</a>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link text-light" rel='noreferrer noopener' target={'_blank'} href="http://anasdew.tech/">Hire Anas Dew</a>
                         </li>
                     </ul>

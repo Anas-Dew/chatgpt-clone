@@ -50,7 +50,7 @@ body {
         -webkit-transform: translateY(0);
         transform: translateY(0);
     }
-    
+
     100% {
         opacity: 100;
         -webkit-transform: translateY(-25px);
@@ -69,4 +69,16 @@ body {
     min-width: 10%;
     max-width: 50%;
     width: auto;
+}
+
+.faq-content {
+    color: aliceblue;
+    width: 70%;
+    background-color: rgb(41, 41, 41);
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+}
+
+.faq-content:hover {
+    background-color: rgb(14, 14, 14);
 }
