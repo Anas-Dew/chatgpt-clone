@@ -28,8 +28,8 @@ const Chat = () => {
     const SendChat = (text) => {
         let chatBox = document.getElementById('chat-box');
         audioGotRef.current.play()
-        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'></div>`
-        chatBox.lastChild.textContent = text
+        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'>${text}</div>`
+        // chatBox.lastChild.textContent = text
     }
 
     const getChat = async (url = 'https://api.openai.com/v1/completions', question) => {
@@ -41,9 +41,9 @@ const Chat = () => {
             },
             body: JSON.stringify({
                 "model": "text-davinci-003",
-                "prompt": `DO IT NOW:${question}`,
+                "prompt": `DO IT NOW and RETURN RESPONSE FORMATTED AS HTML CONTENT LIKE HEADING, BULLET POINTS, TABLES as NEEDED and KEEP THE RESPONSE SHORT AND CONCISE:${question}`,
                 "temperature": 0.7,
-                "max_tokens": 256,
+                "max_tokens": 750,
                 "top_p": 1,
                 "frequency_penalty": 0,
                 "presence_penalty": 0
