@@ -1,12 +1,16 @@
-import React from 'react'
-/* eslint-disable */ 
+import React, { useRef } from 'react'
+/* eslint-disable */
 const Chat = () => {
+    const audioSendRef = useRef(null);
+    const audioGotRef = useRef(null);
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
         if (currentText.length <= 0) {
+            audioGotRef.current.play()
             chatBox.innerHTML = chatBox.innerHTML + "<div id='chat-pop' class='p-2 m-4 bg-primary text-white rounded'>You input is empty. Feel free to ask me anything.</div>"
         } else {
+            audioSendRef.current.play()
             chatBox.innerHTML = chatBox.innerHTML + `<div id='chat-pop' style='background-color:#217b82 !important' class='slide-top align-self-end text-end p-2 m-1 text-white rounded'></div>`
             chatBox.lastChild.textContent = currentText
             document.getElementById('chat-input').value = ""
@@ -23,6 +27,7 @@ const Chat = () => {
 
     const SendChat = (text) => {
         let chatBox = document.getElementById('chat-box');
+        audioGotRef.current.play()
         chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'></div>`
         chatBox.lastChild.textContent = text
     }
@@ -55,13 +60,18 @@ const Chat = () => {
     return (
         <div>
             <div id='chat-box' style={{ marginBottom: "5rem" }} className=' p-3 d-flex flex-column'>
-                <div id='chat-pop' style={{backgroundColor: "#29599f"}} className='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
+                <div id='chat-pop' style={{ backgroundColor: "#29599f" }} className='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
             </div>
-
             {/* THESE ARE CHAT BUTTONS */}
             <div>
+                <audio ref={audioSendRef}>
+                    <source src="../text-sent.wav" type="audio/wav" />
+                </audio>
+                <audio ref={audioGotRef}>
+                    <source src="../text-got.wav" type="audio/wav" />
+                </audio>
                 <div id='chat-plate' className="d-flex p-3 fixed-bottom bg-white">
-                    <textarea style={{height: "1rem"}} onKeyDown={e => {
+                    <textarea style={{ height: "1rem" }} onKeyDown={e => {
                         if (e.keyCode === 13 && e.ctrlKey) {
                             AddToChat();
                         } else if (e.keyCode === 13) {
