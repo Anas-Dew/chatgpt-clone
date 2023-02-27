@@ -5,9 +5,9 @@ const Chat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
         if (currentText.length <= 0) {
-            chatBox.innerHTML = chatBox.innerHTML + "<div style='width:70%' class='p-2 m-4 bg-primary text-white rounded'>You input is empty. Feel free to ask me anything.</div>"
+            chatBox.innerHTML = chatBox.innerHTML + "<div id='chat-pop' class='p-2 m-4 bg-primary text-white rounded'>You input is empty. Feel free to ask me anything.</div>"
         } else {
-            chatBox.innerHTML = chatBox.innerHTML + `<div style="width:70%" class='align-self-end text-end p-2 m-1 bg-success text-white rounded'></div>`
+            chatBox.innerHTML = chatBox.innerHTML + `<div id='chat-pop' style='background-color:#217b82 !important' class='slide-top align-self-end text-end p-2 m-1 text-white rounded'></div>`
             chatBox.lastChild.textContent = currentText
             document.getElementById('chat-input').value = ""
             chatBox.scrollTop = chatBox.scrollHeight;
@@ -17,13 +17,13 @@ const Chat = () => {
     const ClearChat = () => {
         let chatBox = document.getElementById('chat-box');
         document.getElementById('chat-input').value = ""
-        chatBox.innerHTML = "<div style='width:70%' class='p-2 m-4 bg-primary text-white rounded'>Hi I am CloneGPT, made by Anas Dew in 4 hours and 18 minutes. You can ask me anything you want.</div>"
+        chatBox.innerHTML = "<div id='chat-pop' style='background-color:#29599f !important' class='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want.</div>"
 
     }
 
     const SendChat = (text) => {
         let chatBox = document.getElementById('chat-box');
-        chatBox.innerHTML += `<div style='width:70%' class='p-2 m-4 bg-primary text-white rounded'></div>`
+        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'></div>`
         chatBox.lastChild.textContent = text
     }
 
@@ -55,12 +55,12 @@ const Chat = () => {
     return (
         <div>
             <div id='chat-box' style={{ marginBottom: "5rem" }} className=' p-3 d-flex flex-column'>
-                <div style={{ width: "70%"}} className='p-2 m-4 bg-primary text-white rounded'>Hi I am CloneGPT, made by Anas Dew in 4 hours and 18 minutes. You can ask me anything you want.</div>
+                <div id='chat-pop' style={{backgroundColor: "#29599f"}} className='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
             </div>
 
             {/* THESE ARE CHAT BUTTONS */}
             <div>
-                <div className="d-flex p-3 fixed-bottom bg-white">
+                <div id='chat-plate' className="d-flex p-3 fixed-bottom bg-white">
                     <textarea style={{height: "1rem"}} onKeyDown={e => {
                         if (e.keyCode === 13 && e.ctrlKey) {
                             AddToChat();
