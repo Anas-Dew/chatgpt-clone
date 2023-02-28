@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 const Chat = () => {
     const audioSendRef = useRef(null);
     const audioGotRef = useRef(null);
-    const [AIChat, setAIChat] = useState('AI is writing...')
+    const [AIChat, setAIChat] = useState('AI is typing...')
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
@@ -14,10 +14,11 @@ const Chat = () => {
             audioSendRef.current.play()
             chatBox.innerHTML = chatBox.innerHTML + `<div id='chat-pop' style='background-color:#217b82 !important' class='slide-top align-self-end text-end p-2 m-1 text-white rounded'></div>`
             chatBox.lastChild.textContent = currentText
+            window.scrollTo(0,10000)
             document.getElementById('chat-input').value = ""
-            chatBox.scrollTop = chatBox.scrollHeight;
             setTimeout(() => {
                 SendChat()
+                window.scrollTo(0,10000)
             }, 1000)
             // setAIChat('...')
             getChat("https://api.openai.com/v1/completions", currentText)
@@ -46,7 +47,7 @@ const Chat = () => {
             },
             body: JSON.stringify({
                 "model": "text-davinci-003",
-                "prompt": `DO IT NOW and RETURN RESPONSE FORMATTED AS HTML CONTENT LIKE HEADING, BULLET POINTS, TABLES as NEEDED and KEEP THE RESPONSE SHORT AND CONCISE:${question}`,
+                "prompt": `Return response formatted as html content:${question}`,
                 "temperature": 0.7,
                 "max_tokens": 750,
                 "top_p": 1,
@@ -58,6 +59,7 @@ const Chat = () => {
                 let response = data['choices'][0]['text'];
                 console.log(response);
                 document.getElementById('chat-box').lastChild.innerHTML = response
+                window.scrollTo(0,10000)
             }
         )
     }
@@ -75,7 +77,7 @@ const Chat = () => {
                 <audio ref={audioGotRef}>
                     <source src="../text-got.wav" type="audio/wav" />
                 </audio>
-                <div id='chat-plate' className="d-flex p-3 fixed-bottom bg-white">
+                <div id='chat-plate' className=" p-3 fixed-bottom bg-white">
                     <textarea style={{ height: "1rem" }} onKeyDown={e => {
                         if (e.keyCode === 13 && e.ctrlKey) {
                             AddToChat();
