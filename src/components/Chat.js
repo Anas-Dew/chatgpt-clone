@@ -5,6 +5,12 @@ import aiChatTone from "../text-got.wav"
 const Chat = () => {
     const audioSendRef = useRef(null);
     const audioGotRef = useRef(null);
+    const ClearChat = () => {
+        let chatBox = document.getElementById('chat-box');
+        document.getElementById('chat-input').value = ""
+        chatBox.innerHTML = "<div id='chat-pop' style='background-color:#29599f !important' class='p-2 m-4 text-white rounded-3'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want.</div>"
+    
+    }
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
@@ -21,6 +27,10 @@ const Chat = () => {
             SendChat("K.")
             window.scrollTo(0,10000)
             setTimeout(()=> {window.location.reload()}, 3000)
+        } else if (currentText == "/clear") {
+            SendChat("Woosh!")
+            window.scrollTo(0,10000)
+            setTimeout(()=> {ClearChat()}, 1000)
         }
         else {
             audioSendRef.current.play()
@@ -35,12 +45,6 @@ const Chat = () => {
             // setAIChat('...')
             getChat("https://api.openai.com/v1/completions", currentText)
         }
-    }
-    const ClearChat = () => {
-        let chatBox = document.getElementById('chat-box');
-        document.getElementById('chat-input').value = ""
-        chatBox.innerHTML = "<div id='chat-pop' style='background-color:#29599f !important' class='p-2 m-4 text-white rounded-3'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want.</div>"
-
     }
 
     const SendChat = (custom_message) => {
