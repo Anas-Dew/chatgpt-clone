@@ -12,6 +12,10 @@ body {
     color: aliceblue !important;
 }
 
+#news-updates-div {
+    
+}
+
 #chat-box {
     margin-left: 2.8rem;
     margin-right: 2.8rem;
@@ -26,6 +30,9 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+    #news-updates-div {
+        flex-direction: column;
+    }
     #chat-plate {
         padding-left: 1rem !important;
         padding-right: 1rem !important;

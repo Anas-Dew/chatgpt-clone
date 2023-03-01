@@ -1,23 +1,30 @@
 import React, { useRef, useState } from 'react'
 /* eslint-disable */
+import userChatTone from "../text-sent.wav"
+import aiChatTone from "../text-got.wav"
 const Chat = () => {
     const audioSendRef = useRef(null);
     const audioGotRef = useRef(null);
-    const [AIChat, setAIChat] = useState('AI is typing...')
     const AddToChat = () => {
         let chatBox = document.getElementById('chat-box');
         let currentText = document.getElementById('chat-input').value
         if (currentText.length <= 0) {
             audioGotRef.current.play()
-            chatBox.innerHTML = chatBox.innerHTML + "<div id='chat-pop' class='p-2 m-4 bg-primary text-white rounded'>You input is empty. Feel free to ask me anything.</div>"
-        } else {
+            chatBox.innerHTML = chatBox.innerHTML + "<div id='chat-pop' class='p-2 m-4 bg-primary text-white rounded-3'>You input is empty. Feel free to ask me anything.</div>"
+        } else if (currentText == "/dark") {
+            localStorage.setItem("theme", "dark")
+            SendChat("I see where your thoughts are going 😁.")
+            window.scrollTo(0,10000)
+            setTimeout(()=> {window.location.reload()}, 3000)
+        }
+        else {
             audioSendRef.current.play()
-            chatBox.innerHTML = chatBox.innerHTML + `<div id='chat-pop' style='background-color:#217b82 !important' class='slide-top align-self-end text-end p-2 m-1 text-white rounded'></div>`
+            chatBox.innerHTML = chatBox.innerHTML + `<div id='chat-pop' style='background-color:#217b82 !important' class='slide-top align-self-end text-end p-2 m-1 text-white rounded-3'></div>`
             chatBox.lastChild.textContent = currentText
             window.scrollTo(0,10000)
             document.getElementById('chat-input').value = ""
             setTimeout(() => {
-                SendChat()
+                SendChat('Dewbot is typing...')
                 window.scrollTo(0,10000)
             }, 1000)
             // setAIChat('...')
@@ -27,14 +34,14 @@ const Chat = () => {
     const ClearChat = () => {
         let chatBox = document.getElementById('chat-box');
         document.getElementById('chat-input').value = ""
-        chatBox.innerHTML = "<div id='chat-pop' style='background-color:#29599f !important' class='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want.</div>"
+        chatBox.innerHTML = "<div id='chat-pop' style='background-color:#29599f !important' class='p-2 m-4 text-white rounded-3'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want.</div>"
 
     }
 
-    const SendChat = () => {
+    const SendChat = (custom_message) => {
         let chatBox = document.getElementById('chat-box');
         audioGotRef.current.play()
-        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded'>${AIChat}</div>`
+        chatBox.innerHTML += `<div id='chat-pop' style='background-color:#29599f !important' class='slide-top p-2 m-4 text-white rounded-3'>${custom_message}</div>`
         // chatBox.lastChild.textContent = text
     }
 
@@ -67,15 +74,15 @@ const Chat = () => {
     return (
         <div>
             <div id='chat-box' style={{ marginBottom: "5rem" }} className=' p-3 d-flex flex-column'>
-                <div id='chat-pop' style={{ backgroundColor: "#29599f" }} className='p-2 m-4 text-white rounded'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
+                <div id='chat-pop' style={{ backgroundColor: "#29599f" }} className='p-2 m-4 text-white rounded-3'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
             </div>
             {/* THESE ARE CHAT BUTTONS */}
             <div>
                 <audio ref={audioSendRef}>
-                    <source src="../text-sent.wav" type="audio/wav" />
+                    <source src={userChatTone} type="audio/wav" />
                 </audio>
                 <audio ref={audioGotRef}>
-                    <source src="../text-got.wav" type="audio/wav" />
+                    <source src={aiChatTone} type="audio/wav" />
                 </audio>
                 <div id='chat-plate' className=" p-3 fixed-bottom bg-white">
                     <textarea style={{ height: "1rem" }} onKeyDown={e => {

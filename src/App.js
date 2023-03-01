@@ -4,10 +4,15 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Tips from './components/Tips'
 function App() {
+  if (localStorage.getItem('theme') === "dark") {
+    console.log("dark mode");
+  } else {
+    console.log("nope");
+  }
   return (
     <>
       <Router>
-        <Navbar heading="CloneGPT"/>
+        <Navbar heading="Dewchat"/>
         <Tips/>
         <Routes>
           <Route exact path='/' element={<Chat/>}></Route>
