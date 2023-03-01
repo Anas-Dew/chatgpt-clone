@@ -8,7 +8,7 @@ body {
 }
 
 #nav-bar {
-    background-color: var(--plate-color) !important;
+    background-color: var(--plate-color) ;
     color: aliceblue !important;
 }
 

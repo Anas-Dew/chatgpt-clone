@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 /* eslint-disable */
 import userChatTone from "../text-sent.wav"
 import aiChatTone from "../text-got.wav"
@@ -14,6 +14,11 @@ const Chat = () => {
         } else if (currentText == "/dark") {
             localStorage.setItem("theme", "dark")
             SendChat("I see where your thoughts are going 😁.")
+            window.scrollTo(0,10000)
+            setTimeout(()=> {window.location.reload()}, 3000)
+        } else if (currentText == "/light") {
+            localStorage.setItem("theme", "light")
+            SendChat("K.")
             window.scrollTo(0,10000)
             setTimeout(()=> {window.location.reload()}, 3000)
         }
