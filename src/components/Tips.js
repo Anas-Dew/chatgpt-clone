@@ -9,6 +9,9 @@ function FAQs() {
                 <p className='mt-2 text-white'>News & Updates</p>
                 <div id='news-updates-div' style={{display: "flex"}}>
                     <div className='d-flex flex-column align-items-center'>
+                        <p className='faq-content'>Use <kbd>/clear</kbd> command to clear chat.</p>
+                    </div>
+                    <div className='d-flex flex-column align-items-center'>
                         <p className='faq-content'>Now you'll hear tone while texting.</p>
                     </div>
                     <div className='d-flex flex-column align-items-center'>

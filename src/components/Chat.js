@@ -1,7 +1,8 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 /* eslint-disable */
 import userChatTone from "../text-sent.wav"
 import aiChatTone from "../text-got.wav"
+import sendChatIcon from "../send-chat.png"
 const Chat = () => {
     const audioSendRef = useRef(null);
     const audioGotRef = useRef(null);
@@ -80,12 +81,12 @@ const Chat = () => {
         )
     }
 
+    const [Rows, setRows] = useState(1)
     return (
         <div>
             <div id='chat-box' style={{ marginBottom: "5rem" }} className=' p-3 d-flex flex-column'>
                 <div id='chat-pop' style={{ backgroundColor: "#29599f" }} className='p-2 m-4 text-white rounded-3'>Hi I am CloneGPT. I'm coded by Anas Dew in 4 hours and 18 minutes. He can also help you build AI web apps if you want. Here's his contact : <a href='http://anasdew.tech/'>Anas Dew</a></div>
             </div>
-            {/* THESE ARE CHAT BUTTONS */}
             <div>
                 <audio ref={audioSendRef}>
                     <source src={userChatTone} type="audio/wav" />
@@ -93,16 +94,18 @@ const Chat = () => {
                 <audio ref={audioGotRef}>
                     <source src={aiChatTone} type="audio/wav" />
                 </audio>
-                <div id='chat-plate' className=" p-3 fixed-bottom bg-white">
-                    <textarea style={{ height: "1rem" }} onKeyDown={e => {
+                {/* THESE ARE CHAT BUTTONS */}
+                <div id='chat-plate' className=" p-3 fixed-bottom bg-white align-items-end">
+                    <textarea rows={Rows} onKeyDown={e => {
                         if (e.keyCode === 13 && e.ctrlKey) {
                             AddToChat();
                         } else if (e.keyCode === 13) {
+                            setRows(Rows+1)
                         }
                     }}
                         type="text" className="m-1 rounded form-control" placeholder='Ask me anything' id="chat-input" />
+                    <button onClick={AddToChat} style={{height: "2.5rem", width: "0px"}} id='send' type="submit" className="m-1 rounded btn btn-primary"><img src={sendChatIcon}/></button>
                     {/* <button onClick={ClearChat} type="submit" className="m-1 rounded btn btn-primary">Clear</button> */}
-                    <button onClick={AddToChat} id='send' type="submit" className="m-1 rounded btn btn-primary">Send</button>
                 </div>
             </div>
         </div>
