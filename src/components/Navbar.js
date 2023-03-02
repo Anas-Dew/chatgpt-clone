@@ -19,9 +19,9 @@ const Navbar = (props) => {
                             <a className={`nav-link text-${props.text_theme}`} rel='noreferrer noopener' target={'_blank'} href="http://anasdew.tech/">Hire Anas Dew</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a className={`nav-link dropdown-toggle text-${props.text_theme}`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link className={`nav-link dropdown-toggle text-${props.text_theme}`} to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 More apps
-                            </a>
+                            </Link>
                             <ul class="dropdown-menu">
                                 <li><Link class="dropdown-item" target={'_blank'} to="https://google2002.netlify.app/">Nostalgia Google</Link></li>
                                 <li><Link class="dropdown-item" target={'_blank'} to="https://superurl.pythonanywhere.com/">SuperURL</Link></li>
