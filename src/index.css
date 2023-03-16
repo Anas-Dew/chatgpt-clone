@@ -4,16 +4,12 @@
 }
 
 body {
-    background-color: var(--hero-bg) !important;
+    background-color: var(--hero-bg);
 }
 
 #nav-bar {
     background-color: var(--plate-color) ;
     color: aliceblue !important;
-}
-
-#news-updates-div {
-    
 }
 
 #chat-box {

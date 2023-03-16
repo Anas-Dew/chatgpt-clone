@@ -26,8 +26,6 @@ const Navbar = (props) => {
                                 <li><Link class="dropdown-item" target={'_blank'} to="https://google2002.netlify.app/">Nostalgia Google</Link></li>
                                 <li><Link class="dropdown-item" target={'_blank'} to="https://superurl.pythonanywhere.com/">SuperURL</Link></li>
                                 <li><Link class="dropdown-item" target={'_blank'} to="https://phrase2word.netlify.app/">Phrase2Word</Link></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><Link class="dropdown-item" target={'_blank'} to="https://tally.so/r/nr5Arp">Feedback</Link></li>
                             </ul>
                         </li>
                     </ul>

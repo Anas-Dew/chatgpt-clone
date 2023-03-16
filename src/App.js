@@ -10,14 +10,19 @@ function App() {
     console.log("dark mode");
     theme_nav = "dark"
     text_theme = "light"
+    document.body.style.backgroundColor = 'rgb(22, 22, 22)'
+    // document.getElementById('chat-plate').style.backgroundColor = 'rgb(22, 22, 22)'
+    
   } else {
+
     console.log("nope");
   }
+
   return (
     <>
       <Router>
         <Navbar theme={theme_nav} text_theme={text_theme} heading="Dewchat"/>
-        <Tips/>
+        <Tips text_theme={text_theme}/>
         <Routes>
           <Route exact path='/' element={<Chat/>}></Route>
           <Route exact path='/chat' element={<Chat/>}></Route>
