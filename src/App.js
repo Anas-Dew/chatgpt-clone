@@ -14,7 +14,6 @@ function App() {
     // document.getElementById('chat-plate').style.backgroundColor = 'rgb(22, 22, 22)'
     
   } else {
-
     console.log("nope");
   }
 

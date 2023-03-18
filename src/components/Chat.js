@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 /* eslint-disable */
 import userChatTone from "../text-sent.wav"
 import aiChatTone from "../text-got.wav"
