@@ -72,11 +72,27 @@ const Chat = () => {
                 window.scrollTo(0, 10000)
                 document.getElementById('chat-input').value = ""
                 setTimeout(() => {
-                    SendChat('Dewbot is typing...')
+                    SendChat('Dewbot is expired but you can still use it by using your own api...')
                     window.scrollTo(0, 10000)
                 }, 500)
+
+                if (!localStorage.getItem('open_api_token')) {
+                    let key = prompt("Enter your open ai token below (it is safe and saved in your browser.)")
+                    if(key){
+                        localStorage.setItem('open_api_token', key)
+                        getChat("https://api.openai.com/v1/completions", currentText)
+                    } else {
+                        setTimeout(() => {
+                            document.getElementById('chat-box').lastChild.innerHTML = `<video style="width: 70vh;
+                            border-radius: 9px;" src="https://dews-files.s3.us-east-005.backblazeb2.com/dewchat.mp4" controls controlsList="nodownload"></video>`
+                            
+                        }, 3000);
+                    }
+                } else {
+                    getChat("https://api.openai.com/v1/completions", currentText)
+                }
+
                 // setAIChat('...')
-                getChat("https://api.openai.com/v1/completions", currentText)
             }
         // }
     }
@@ -101,7 +117,7 @@ const Chat = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.REACT_APP_OPEN_KEY}`
+                'Authorization': `Bearer ${localStorage.getItem("open_api_token")}`
             },
             body: JSON.stringify({
                 "model": "text-davinci-003",
